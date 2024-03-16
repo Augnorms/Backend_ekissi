@@ -1,12 +1,10 @@
-import { DataSource } from "typeorm";
 import "reflect-metadata";
 import * as dotenv from "dotenv";
 import express from 'express';
 import databaseConnection from "./datasource/datasource";
 
 //initialize router here
-const createUer = require("./routes/user.routes")
-
+const createMember = require("./routes/familyMembersRoute/memberInfo.routes");
 
 dotenv.config();
 const app = express()
@@ -21,8 +19,7 @@ databaseConnection.initialize().then(()=>{
 });
   
 //accessing the routes here
-app.use("/create", createUer);
-
+app.use("/createmember", createMember);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);
