@@ -7,6 +7,7 @@ import databaseConnection from "./datasource/datasource";
 const createMember = require("./routes/familyMembersRoute/memberInfo.routes");
 const fetchallMembers = require("./routes/familyMembersRoute/getallmembers.routes");
 const fetchmemberbyId = require("./routes/familyMembersRoute/getmemberById.routes");
+const login = require("./routes/memberLoginRoute/loginroute.routes");
 
 dotenv.config();
 const app = express()
@@ -24,6 +25,7 @@ databaseConnection.initialize().then(()=>{
 app.use("/createmember", createMember);
 app.use("/fetchallmembers", fetchallMembers);
 app.use("/getmemberbyid", fetchmemberbyId);
+app.use("/login", login);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);
