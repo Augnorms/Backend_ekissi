@@ -2,6 +2,7 @@ import "reflect-metadata";
 import * as dotenv from "dotenv";
 import express from 'express';
 import databaseConnection from "./datasource/datasource";
+import cors from "cors";
 
 //initialize router here
 const createMember = require("./routes/familyMembersRoute/memberInfo.routes");
@@ -12,6 +13,7 @@ const login = require("./routes/memberLoginRoute/loginroute.routes");
 dotenv.config();
 const app = express()
 app.use(express.json());
+app.use(cors());//used to configure which origin needs to access a resources from this server.
 const port = process.env.PORT_NUMBER
 
 //database connection
