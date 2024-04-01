@@ -11,6 +11,11 @@ const fetchmemberbyId = require("./routes/familyMembersRoute/getmemberById.route
 const login = require("./routes/memberLoginRoute/loginroute.routes");
 const updateMember = require("./routes/familyMembersRoute/updatemembers.routes");
 const deletemember = require("./routes/familyMembersRoute/deletemembers.routes");
+const createAccesslevel = require("./routes/accessLevelRoute/createAccessLevel.routes");
+const getallaccessLevel = require("./routes/accessLevelRoute/getallaccessLevel.routes");
+const getUsersaccessLevel = require("./routes/accessLevelRoute/getusersAccessLevel.routes");
+const updateAccessLevel = require("./routes/accessLevelRoute/updateAccessLevel.routes");
+const deleteAccessLevel = require("./routes/accessLevelRoute/deleteaccesslevel.routes");
 
 dotenv.config();
 const app = express()
@@ -32,6 +37,11 @@ app.use("/getmemberbyid", fetchmemberbyId);
 app.use("/login", login);
 app.use("/updatemembers", updateMember);
 app.use("/deletemember", deletemember);
+app.use("/createaccesslevel", createAccesslevel);
+app.use("/getallaccesslevel", getallaccessLevel);
+app.use("/getusersaccesslevel", getUsersaccessLevel);
+app.use("/updateaccesslevel", updateAccessLevel);
+app.use("/deletaccesslevel", deleteAccessLevel);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);

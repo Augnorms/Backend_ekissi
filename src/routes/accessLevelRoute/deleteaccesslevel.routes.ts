@@ -1,17 +1,17 @@
 import databaseConnection from "../../datasource/datasource";
 import express, { Request, Response } from "express";
-import { Members } from "../../entities/members";
+import { AccessLevel } from "../../entities/accesslevel";
 
 const route = express.Router();
 
 route.post("/", async(req:Request, res:Response)=>{
-  try{
 
-    const {user_id} = req.body;
+    try{
+        const {user_id} = req.body
 
-    let memberRepo = databaseConnection.getRepository(Members);
+        let accesslevelRepo = databaseConnection.getRepository(AccessLevel);
 
-    let memberToDelete =  await memberRepo.findOne({where:{id:user_id}});
+        let memberToDelete =  await accesslevelRepo.findOne({where:{id:user_id}});
 
     if (!memberToDelete) {
         return res.status(404).json({ message: "Member not found" });
@@ -20,7 +20,7 @@ route.post("/", async(req:Request, res:Response)=>{
     let response = await databaseConnection
     .createQueryBuilder()
     .delete()
-    .from(Members)
+    .from(AccessLevel)
     .where("id = :user_id", {user_id})
     .execute()
 
@@ -32,10 +32,11 @@ route.post("/", async(req:Request, res:Response)=>{
         })
     }
 
-  }catch(error){
+    }catch(error){
       console.error("Error updating member:", error);
       return res.status(500).json({ message: "Internal server error" });
-  }
+    }
+
 });
 
 module.exports = route;
