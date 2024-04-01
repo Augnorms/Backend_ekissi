@@ -10,7 +10,7 @@ const fetchallMembers = require("./routes/familyMembersRoute/getallmembers.route
 const fetchmemberbyId = require("./routes/familyMembersRoute/getmemberById.routes");
 const login = require("./routes/memberLoginRoute/loginroute.routes");
 const updateMember = require("./routes/familyMembersRoute/updatemembers.routes");
-const deletemember = require("./routes/familyMembersRoute/deletemembers.route");
+const deletemember = require("./routes/familyMembersRoute/deletemembers.routes");
 
 dotenv.config();
 const app = express()
