@@ -1,82 +1,79 @@
+import express from "express";
 import databaseConnection from "../../datasource/datasource";
-import express, { Request, Response } from "express";
 import { AccessLevel } from "../../entities/accesslevel";
 
-const route = express.Router()
+const router = express.Router();
 
-route.post("/", async(req:Request, res:Response)=>{
+router.post("/", async (req, res) => {
+  try {
+    const {
+      accesslevelname,
+      accessleveldescription,
+      AccesslevelView,
+      AccesslevelManage,
+      UserverificationView,
+      UserverificationManage,
+      AddmembersView,
+      AddmembersManage,
+      ManageaboutView,
+      ManageaboutViewManage,
+      ManagegalleryView,
+      ManagegalleryManage,
+      ManageaccountView,
+      ManageaccountManage,
+      ManagebioView,
+      ManagebioManage,
+      users,
+    } = req.body;
 
-    try{
+    const accessLevelRepo = databaseConnection.getRepository(AccessLevel);
 
-        const {
-            accesslevelname,
-            accessleveldescription,
-            AccesslevelView,
-            AccesslevelManage,
-            UserverificationView,
-            UserverificationManage,
-            AddmembersView,
-            AddmembersManage,
-            ManageaboutView,
-            ManageaboutViewManage,
-            ManagegalleryView,
-            ManagegalleryManage,
-            ManageaccountView,
-            ManageaccountManage,
-            ManagebioView,
-            ManagebioManage,
-            users
-        } = req.body;
+    let existingAccesslevel  = await accessLevelRepo.findOne({where:{accesslevelname:accesslevelname}});
 
-        const accessleveRepo = databaseConnection.getRepository(AccessLevel);
+    if(existingAccesslevel){
+      res.status(401).json({
+        code:401,
+        status:false,
+        message:"Sorry access level already exist"
+      })
+      
+    }else{
+        let createAccesslevel = new AccessLevel();
 
-        const uniqueaccesslevel = await accessleveRepo.findOne({where:{accesslevelname:accesslevelname}});
-        
-        if(uniqueaccesslevel){
-            res.status(404).json({
-                code:404,
-                status:false,
-                message:"Access Level Aready Exist"
-            });
-        }else{
+        createAccesslevel.accesslevelname = accesslevelname;
+        createAccesslevel.accessleveldescription = accessleveldescription;
+        createAccesslevel.AccesslevelView = AccesslevelView;
+        createAccesslevel.AccesslevelManage = AccesslevelManage;
+        createAccesslevel.UserverificationView = UserverificationView;
+        createAccesslevel.UserverificationManage = UserverificationManage;
+        createAccesslevel.AddmembersView = AddmembersView;
+        createAccesslevel.AddmembersManage = AddmembersManage;
+        createAccesslevel.ManageaboutView = ManageaboutView;
+        createAccesslevel.ManageaboutViewManage = ManageaboutViewManage;
+        createAccesslevel.ManagegalleryView = ManagegalleryView;
+        createAccesslevel.ManagegalleryManage = ManagegalleryManage;
+        createAccesslevel.ManageaccountView = ManageaccountView;
+        createAccesslevel.ManageaccountManage = ManageaccountManage;
+        createAccesslevel.ManagebioView = ManagebioView;
+        createAccesslevel.ManagebioManage = ManagebioManage;
+        createAccesslevel.users = users;
 
-         let createMember = new AccessLevel()
-
-        createMember.accesslevelname = accesslevelname;
-        createMember.accessleveldescription = accessleveldescription;
-        createMember.AccesslevelView = AccesslevelView;
-        createMember.AccesslevelManage = AccesslevelManage;
-        createMember.UserverificationView = UserverificationView;
-        createMember.UserverificationManage = UserverificationManage;
-        createMember.AddmembersView = AddmembersView;
-        createMember.AddmembersManage = AddmembersManage;
-        createMember.ManageaboutView = ManageaboutView;
-        createMember.ManageaboutViewManage = ManageaboutViewManage;
-        createMember.ManagegalleryView =  ManagegalleryView;
-        createMember.ManagegalleryManage = ManagegalleryManage;
-        createMember.ManageaccountView = ManageaccountView;
-        createMember.ManageaccountManage = ManageaccountManage;
-        createMember.ManagebioView = ManagebioView;
-        createMember.ManagebioManage = ManagebioManage;
-        createMember.users = users;
-
-        let response = await accessleveRepo.save(createMember);
+        let response = await accessLevelRepo.save(createAccesslevel);
 
         if(response){
             res.status(200).json({
                 code:200,
-                status:true,
                 message:"access level created successfully",
                 data:response
-            });
+            })
         }
-    }
 
-    }catch(error){
-      console.error("Error updating member:", error);
-      return res.status(500).json({ message: "Internal server error" });
     }
-
+    
+  } catch (error) {
+    console.error("Error creating access level:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
-module.exports = route;
+module.exports=router;
