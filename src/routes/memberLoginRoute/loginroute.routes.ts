@@ -15,8 +15,8 @@ route.post("/", async (req: Request, res: Response) => {
         const user = await membersRepo.findOne({ where: { firstname: username } });
 
         if (!user) {
-            return res.status(400).json({
-                code: 400,
+            return res.status(401).json({
+                code: 401,
                 status: false,
                 message: "User not found",
             });

@@ -9,6 +9,8 @@ const createMember = require("./routes/familyMembersRoute/memberInfo.routes");
 const fetchallMembers = require("./routes/familyMembersRoute/getallmembers.routes");
 const fetchmemberbyId = require("./routes/familyMembersRoute/getmemberById.routes");
 const login = require("./routes/memberLoginRoute/loginroute.routes");
+const updateMember = require("./routes/familyMembersRoute/updatemembers.routes");
+const deletemember = require("./routes/familyMembersRoute/deletemembers.route");
 
 dotenv.config();
 const app = express()
@@ -28,6 +30,8 @@ app.use("/createmember", createMember);
 app.use("/fetchallmembers", fetchallMembers);
 app.use("/getmemberbyid", fetchmemberbyId);
 app.use("/login", login);
+app.use("/updatemembers", updateMember);
+app.use("/deletemember", deletemember);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);

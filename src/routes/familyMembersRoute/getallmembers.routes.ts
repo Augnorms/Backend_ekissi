@@ -9,7 +9,11 @@ route.get("/", async(req:Request, res:Response)=>{
     try{
         const membersRepo = databaseConnection.getRepository(Members);
 
-        let response = await membersRepo.find();
+        let response = await membersRepo.find({
+          order:{
+            id:"DESC"
+          }
+        });
 
         if(response){
           res.status(200).json({
