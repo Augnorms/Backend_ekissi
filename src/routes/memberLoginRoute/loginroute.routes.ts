@@ -3,12 +3,16 @@ import express, { Request, Response } from "express";
 import { Members } from "../../entities/members";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"; // Import jwt, not jwttoken
+import axios from "axios";
 
 const route = express.Router();
+
 
 route.post("/", async (req: Request, res: Response) => {
     try {
         const { username, password, rememberMe } = req.body;
+
+        const accesslevelroute = process.env.ACCESS_LEVEL_ENDPOINT;
 
         const membersRepo = databaseConnection.getRepository(Members);
 
@@ -21,6 +25,13 @@ route.post("/", async (req: Request, res: Response) => {
                 message: "User not found",
             });
         }
+
+        const accessResponse = await axios.post(String(accesslevelroute), {
+            id:String(user.id),
+            label:`${user.firstname} ${user.lastname}`
+        })
+
+        const accessLevelData = accessResponse.data.data;
 
         bcrypt.compare(password, user.password, (err, isPassword) => {
             if (err) {
@@ -41,7 +52,7 @@ route.post("/", async (req: Request, res: Response) => {
                         dateofbirth: user.dateofbirth,
                         gender: user.gender,
                         nationality: user.nationality,
-                        accesslevel: {},
+                        accesslevel: {accessLevelData},
                     },
                     "validate12345",
                     { expiresIn: rememberMe === 1 ? 3600 : 1800 }
