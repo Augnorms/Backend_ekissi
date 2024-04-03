@@ -18,6 +18,7 @@ const updateAccessLevel = require("./routes/accessLevelRoute/updateAccessLevel.r
 const deleteAccessLevel = require("./routes/accessLevelRoute/deleteaccesslevel.routes");
 const createaboutpagecontenet = require("./routes/aboutpageRoute/createabout.Routes");
 const updatedaboutpagecontent = require("./routes/aboutpageRoute/updateabout.routes");
+const getaboutcontent = require("./routes/aboutpageRoute/getaboutcontent.routes");
 
 dotenv.config();
 const app = express()
@@ -46,6 +47,7 @@ app.use("/updateaccesslevel", updateAccessLevel);
 app.use("/deletaccesslevel", deleteAccessLevel);
 app.use("/createaboutcontent", createaboutpagecontenet);
 app.use("/updatedaboutpagecontent", updatedaboutpagecontent)
+app.use("/getaboutcontent", getaboutcontent);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);
