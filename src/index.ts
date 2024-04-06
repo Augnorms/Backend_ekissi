@@ -19,6 +19,10 @@ const deleteAccessLevel = require("./routes/accessLevelRoute/deleteaccesslevel.r
 const createaboutpagecontenet = require("./routes/aboutpageRoute/createabout.Routes");
 const updatedaboutpagecontent = require("./routes/aboutpageRoute/updateabout.routes");
 const getaboutcontent = require("./routes/aboutpageRoute/getaboutcontent.routes");
+const creategallery = require("./routes/gallerypageRoute/creategallery.routes");
+const getallgallery = require("./routes/gallerypageRoute/getallgallery.routes");
+const updategallery = require("./routes/gallerypageRoute/updategallery.routes");
+const deletegallery = require("./routes/gallerypageRoute/deletegallery.routes");
 
 dotenv.config();
 const app = express()
@@ -48,6 +52,10 @@ app.use("/deletaccesslevel", deleteAccessLevel);
 app.use("/createaboutcontent", createaboutpagecontenet);
 app.use("/updatedaboutpagecontent", updatedaboutpagecontent)
 app.use("/getaboutcontent", getaboutcontent);
+app.use("/creategallery", creategallery);
+app.use("/getallgallery", getallgallery);
+app.use("/updategallery", updategallery);
+app.use("/deletegallery", deletegallery);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);
