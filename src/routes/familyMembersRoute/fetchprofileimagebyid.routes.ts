@@ -1,7 +1,6 @@
 import databaseConnection from "../../datasource/datasource";
 import express, { Response, Request } from "express";
 import { Profileimage } from "../../entities/profileimage";
-import { Members } from "../../entities/members";
 
 const route = express.Router();
 
