@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
+import { Profileimage } from "./profileimage";
 @Entity({name:'members'})
 export class Members{
     @PrimaryGeneratedColumn("increment")
@@ -15,7 +15,7 @@ export class Members{
     email:string;
 
     @Column()
-    password:string
+    password:string;
 
     @Column()
     gender:string;
@@ -26,14 +26,14 @@ export class Members{
     @Column()
     placeofbirth:string;
 
-     @Column({ type: 'text', nullable: true })
+    @Column({ type: 'text', nullable: true })
     occupation: string;
 
     @Column()
-    nationality:string
+    nationality:string;
 
     @Column()
-    phonenumber:string
+    phonenumber:string;
 
     @Column()
     mothersname:string;
@@ -45,7 +45,7 @@ export class Members{
     maritalstatus:string;
 
     @Column()
-    numberofchildren:number
+    numberofchildren:number;
 
     @Column()
     primaryeducation:string;
@@ -58,4 +58,8 @@ export class Members{
 
     @Column()
     hometown:string;
+
+    @OneToMany(()=>Profileimage, (profileimage)=>profileimage.member)
+    profile:Profileimage[];
+
 }
