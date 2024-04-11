@@ -23,6 +23,7 @@ const creategallery = require("./routes/gallerypageRoute/creategallery.routes");
 const getallgallery = require("./routes/gallerypageRoute/getallgallery.routes");
 const updategallery = require("./routes/gallerypageRoute/updategallery.routes");
 const deletegallery = require("./routes/gallerypageRoute/deletegallery.routes");
+const creatememberprofileimage = require("./routes/familyMembersRoute/createprofileimage.routes");
 
 dotenv.config();
 const app = express()
@@ -56,6 +57,7 @@ app.use("/creategallery", creategallery);
 app.use("/getallgallery", getallgallery);
 app.use("/updategallery", updategallery);
 app.use("/deletegallery", deletegallery);
+app.use("/createprofileimage", creatememberprofileimage);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);
