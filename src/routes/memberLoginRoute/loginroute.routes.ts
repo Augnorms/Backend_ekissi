@@ -14,6 +14,8 @@ route.post("/", async (req: Request, res: Response) => {
 
         const accesslevelroute = process.env.ACCESS_LEVEL_ENDPOINT;
 
+        const profileimageEndpoint = process.env.PROFILE_IMAGE_ENDPOINT
+
         const membersRepo = databaseConnection.getRepository(Members);
 
         const user = await membersRepo.findOne({ where: { firstname: username } });
@@ -32,6 +34,9 @@ route.post("/", async (req: Request, res: Response) => {
         })
 
         const accessLevelData = accessResponse.data.data;
+
+        const profileImageRes = await axios.post(String(profileimageEndpoint), {req_id:user.id});
+
 
         bcrypt.compare(password, user.password, (err, isPassword) => {
             if (err) {
@@ -53,6 +58,7 @@ route.post("/", async (req: Request, res: Response) => {
                         gender: user.gender,
                         nationality: user.nationality,
                         accesslevel: {accessLevelData},
+                        image: profileImageRes?.data?.data
                     },
                     "validate12345",
                     { expiresIn: rememberMe === 1 ? 3600 : 1800 }
