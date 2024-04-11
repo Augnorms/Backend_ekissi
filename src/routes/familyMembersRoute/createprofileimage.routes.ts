@@ -7,7 +7,7 @@ const route = express.Router();
 
 route.post("/", async (req: Request, res: Response) => {
     try {
-        const { memberId, image } = req.body; // Assuming you send memberId in the request body
+        const { memberId, image } = req.body; 
 
         const profileImageRepo = databaseConnection.getRepository(Profileimage);
         const memberRepo = databaseConnection.getRepository(Members); // Get the repository for Members
