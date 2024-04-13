@@ -35,8 +35,9 @@ route.post("/", async (req: Request, res: Response) => {
             code: 200,
             status: true,
             message: "Created image successfully",
-            data: savedImage, // Optionally, you can send the saved image data back to the client
+            data: savedImage,
         });
+        
     } catch (error) {
         console.error("Error:", error);
         return res.status(500).json({ message: "Internal server error" });

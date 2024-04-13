@@ -25,6 +25,7 @@ route.post("/", async(req:Request, res:Response)=>{
             status: true,
             message: "Profile images fetched successfully",
             data: getimage.image,
+            imageid: getimage.id
     });
 
   }catch(error){
