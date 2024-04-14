@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from "typeorm";
 import { Profileimage } from "./profileimage";
+import { Account } from "./account";
 @Entity({name:'members'})
 export class Members{
     @PrimaryGeneratedColumn("increment")
@@ -62,4 +63,6 @@ export class Members{
     @OneToMany(()=>Profileimage, (profileimage)=>profileimage.member)
     profile:Profileimage[];
 
+    @OneToMany(()=>Account, (account)=>account.member)
+    account:Account[] 
 }
