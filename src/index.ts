@@ -30,6 +30,8 @@ const fetchallimages = require("./routes/familyMembersRoute/fetchallprofileimage
 const createaccount = require("./routes/accountpageRoutie/createaccount.routes");
 const updateaccount = require("./routes/accountpageRoutie/updateaccount.routes");
 const getallaccounts = require("./routes/accountpageRoutie/getallaccounts.routes");
+const createrelation = require("./routes/relationshipRoute/createrelationship.routes");
+const updaterelation = require("./routes/relationshipRoute/updaterelationship.routes");
 
 dotenv.config();
 const app = express()
@@ -70,6 +72,8 @@ app.use("/fetchallimages", fetchallimages);
 app.use("/createaccount", createaccount);
 app.use("/updateaccount", updateaccount);
 app.use("/getallaccounts", getallaccounts);
+app.use("/createrelation", createrelation);
+app.use("/updaterelation", updaterelation);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);
