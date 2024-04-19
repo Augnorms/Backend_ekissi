@@ -21,6 +21,7 @@ route.get("/", async(req:Request, res:Response)=>{
                 'member.lastname',
                 'member.email'
             ])
+            .orderBy('account.id', 'DESC')
             .getMany();
 
        if(!getallaccounts){
@@ -30,7 +31,7 @@ route.get("/", async(req:Request, res:Response)=>{
             data:[]
           })
        }else{
-        res.status(400).json({
+        res.status(200).json({
             code: 200,
             status: true,
             data: getallaccounts
