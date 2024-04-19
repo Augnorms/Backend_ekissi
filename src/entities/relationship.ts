@@ -6,12 +6,10 @@ export class Relationship{
     @PrimaryGeneratedColumn()
     id:number;
     
-    @Column()
-    parent_id:number;
+    @ManyToOne(() => Members, parent => parent.children)
+    parent: Members;
 
-    @Column()
-    child_id:number;
+    @ManyToOne(() => Members, child => child.parents)
+    child: Members;
 
-    @ManyToOne(()=>Members, member=>member.relation)
-    member:Members
 }

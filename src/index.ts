@@ -31,7 +31,7 @@ const createaccount = require("./routes/accountpageRoutie/createaccount.routes")
 const updateaccount = require("./routes/accountpageRoutie/updateaccount.routes");
 const getallaccounts = require("./routes/accountpageRoutie/getallaccounts.routes");
 const createrelation = require("./routes/relationshipRoute/createrelationship.routes");
-const updaterelation = require("./routes/relationshipRoute/updaterelationship.routes");
+const getallrelation = require("./routes/relationshipRoute/fetchallrelationship.routes");
 
 dotenv.config();
 const app = express()
@@ -73,7 +73,7 @@ app.use("/createaccount", createaccount);
 app.use("/updateaccount", updateaccount);
 app.use("/getallaccounts", getallaccounts);
 app.use("/createrelation", createrelation);
-app.use("/updaterelation", updaterelation);
+app.use("/getallrelation", getallrelation);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);

@@ -66,7 +66,11 @@ export class Members{
 
     @OneToMany(()=>Account, (account)=>account.member)
     account:Account[];
+
+    @OneToMany(() => Relationship, (relationship) => relationship.parent)
+    children: Relationship[];
+
+    @OneToMany(() => Relationship, (relationship) => relationship.child)
+    parents: Relationship[];
     
-    @OneToMany(()=>Relationship, (relationship)=>relationship.member)
-    relation:Relationship[]
 }
