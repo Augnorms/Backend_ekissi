@@ -5,16 +5,14 @@ import { Members } from "../../entities/members";
 
 interface Child {
   id: number;
-  firstname: string;
-  lastname: string;
+  label:string
   // Include other child properties as needed
   children: Child[];
 }
 
 interface Parent {
   id: number;
-  firstname: string;
-  lastname: string;
+  label:string
   // Include other parent properties as needed
   children: Child[];
 }
@@ -29,8 +27,15 @@ route.get("/", async (req: Request, res: Response) => {
     // Fetch all relationships
     const relationships = await relationRepo.find({ relations: ['parent', 'child'] });
 
-    // Fetch all members
-    const members = await membersRepo.find();
+    // Get unique member IDs involved in relationships
+    const memberIds = new Set<number>();
+    relationships.forEach(relationship => {
+      memberIds.add(relationship.parent.id);
+      memberIds.add(relationship.child.id);
+    });
+
+    // Fetch only members involved in relationships
+    const members = await membersRepo.findByIds(Array.from(memberIds));
 
     // Initialize an empty hierarchy object
     const hierarchy: Parent[] = [];
@@ -48,8 +53,7 @@ route.get("/", async (req: Request, res: Response) => {
           if (!child) throw new Error("Child not found");
           return {
             id: child.id,
-            firstname: child.firstname,
-            lastname: child.lastname,
+            label: child.firstname+" "+child.lastname,
             // Include other child properties as needed
             children: buildHierarchy(child.id).children,
           };
@@ -57,9 +61,7 @@ route.get("/", async (req: Request, res: Response) => {
 
       return {
         id: parent.id,
-        firstname: parent.firstname,
-        lastname: parent.lastname,
-        // Include other parent properties as needed
+        label: parent.firstname+" "+parent.lastname,
         children,
       };
     };
@@ -81,5 +83,6 @@ route.get("/", async (req: Request, res: Response) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 });
+
 
 module.exports = route;

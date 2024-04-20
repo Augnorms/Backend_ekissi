@@ -11,5 +11,4 @@ export class Relationship{
 
     @ManyToOne(() => Members, child => child.parents)
     child: Members;
-
 }
