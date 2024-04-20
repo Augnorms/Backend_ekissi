@@ -32,6 +32,10 @@ const updateaccount = require("./routes/accountpageRoutie/updateaccount.routes")
 const getallaccounts = require("./routes/accountpageRoutie/getallaccounts.routes");
 const createrelation = require("./routes/relationshipRoute/createrelationship.routes");
 const getallrelation = require("./routes/relationshipRoute/fetchallrelationship.routes");
+const verifiemail = require("./routes/memberLoginRoute/emailverification.routes");
+const checkverificationcodes = require("./routes/memberLoginRoute/verificodes.routes");
+const resetpassword = require("./routes/memberLoginRoute/resetpassword.routes");
+const getallverification = require("./routes/memberLoginRoute/fetchallverification.routes");
 
 dotenv.config();
 const app = express()
@@ -74,6 +78,10 @@ app.use("/updateaccount", updateaccount);
 app.use("/getallaccounts", getallaccounts);
 app.use("/createrelation", createrelation);
 app.use("/getallrelation", getallrelation);
+app.use("/verifiemail", verifiemail);
+app.use("/checkverificationcodes", checkverificationcodes);
+app.use("/resetpassword", resetpassword);
+app.use("/getallverification", getallverification);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);
