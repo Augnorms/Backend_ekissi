@@ -23,7 +23,7 @@ route.put("/", async(req: Request, res: Response) => {
         user.password = hashedPassword;
         await memberRepo.save(user);
 
-        res.status(200).json({ code: 200, message: "Password updated successfully", data:user});
+        res.status(200).json({ code: 200, status:true, message: "Password updated successfully", data:user});
     } catch (error) {
         console.error(error);
         res.status(500).json({ code: 500, message: "Internal server error" });

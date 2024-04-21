@@ -35,7 +35,7 @@ route.post("/", async(req: Request, res: Response) => {
     // Send verification email
     await sendVerificationEmail(email, member.firstname, verificationCode);
 
-    res.status(200).json({ code: 201, message: "Email sent successfully" });
+    res.status(200).json({ code: 201, status:true, message: "Email sent successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ code: 500, message: "Internal server error" });

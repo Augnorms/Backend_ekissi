@@ -33,7 +33,7 @@ route.post("/", async(req: Request, res: Response) => {
 
         // You can perform additional actions here if needed, such as updating the user's verification status
 
-        res.status(200).json({ code: 200, message: "Verification code is valid", user:member.id });
+        res.status(200).json({ code: 200, status:true, message: "Verification code is valid", user:member.id });
     } catch (error) {
         console.error(error);
         res.status(500).json({ code: 500, message: "Internal server error" });
