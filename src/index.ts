@@ -36,6 +36,10 @@ const verifiemail = require("./routes/memberLoginRoute/emailverification.routes"
 const checkverificationcodes = require("./routes/memberLoginRoute/verificodes.routes");
 const resetpassword = require("./routes/memberLoginRoute/resetpassword.routes");
 const getallverification = require("./routes/memberLoginRoute/fetchallverification.routes");
+const allmemberscount = require("./routes/familySummaryRoute/allfamilyCount.routes");
+const femalecount = require("./routes/familySummaryRoute/femalecount.routes");
+const malecount = require("./routes/familySummaryRoute/malecount.routes");
+const allverification = require("./routes/verificationRoute/verification.routes");
 
 dotenv.config();
 const app = express()
@@ -82,6 +86,10 @@ app.use("/verifiemail", verifiemail);
 app.use("/checkverificationcodes", checkverificationcodes);
 app.use("/resetpassword", resetpassword);
 app.use("/getallverification", getallverification);
+app.use("/allmemberscount", allmemberscount);
+app.use("/femalecount", femalecount);
+app.use("/malecount", malecount);
+app.use("/allverification", allverification);
 
 app.listen(port, ()=>{
  console.log(`Server running on port ${port}`);
