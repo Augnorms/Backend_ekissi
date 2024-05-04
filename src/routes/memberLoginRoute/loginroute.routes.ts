@@ -10,7 +10,7 @@ const route = express.Router();
 
 route.post("/", async (req: Request, res: Response) => {
     try {
-        const { username, password, rememberMe } = req.body;
+        const { email, password, rememberMe } = req.body;
 
         const accesslevelroute = process.env.ACCESS_LEVEL_ENDPOINT;
 
@@ -18,7 +18,7 @@ route.post("/", async (req: Request, res: Response) => {
 
         const membersRepo = databaseConnection.getRepository(Members);
 
-        const user = await membersRepo.findOne({ where: { firstname: username } });
+        const user = await membersRepo.findOne({ where: { email: email } });
 
         if (!user) {
             return res.status(401).json({
@@ -33,7 +33,7 @@ route.post("/", async (req: Request, res: Response) => {
             label:`${user.firstname} ${user.lastname}`
         })
 
-        const accessLevelData = accessResponse.data.data;
+        const accessLevelData = accessResponse?.data?.data;
 
         const profileImageRes = await axios.post(String(profileimageEndpoint), {req_id:user.id});
 
@@ -57,8 +57,8 @@ route.post("/", async (req: Request, res: Response) => {
                         dateofbirth: user.dateofbirth,
                         gender: user.gender,
                         nationality: user.nationality,
-                        accesslevel: {accessLevelData},
-                        image: profileImageRes?.data?.data
+                        accesslevel: accessLevelData ? {accessLevelData} : {},
+                        image: profileImageRes?.data?.data ? profileImageRes?.data?.data : ""
                     },
                     "validate12345",
                     { expiresIn: rememberMe === 1 ? 3600 : 1800 }
@@ -70,6 +70,7 @@ route.post("/", async (req: Request, res: Response) => {
                     message: "Login successful",
                     token: token
                 });
+
             } else {
                 res.status(400).json({
                     code: 400,
@@ -78,6 +79,7 @@ route.post("/", async (req: Request, res: Response) => {
                 });
             }
         });
+
     } catch (error) {
         console.error("Error:", error);
         res.status(500).json({

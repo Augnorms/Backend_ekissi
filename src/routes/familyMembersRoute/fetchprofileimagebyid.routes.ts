@@ -12,20 +12,12 @@ route.post("/", async(req:Request, res:Response)=>{
 
     const getimage = await fetchprofileRepo.findOne({where:{member:{id:req_id}}});
 
-    if(!getimage){
-        return res.status(404).json({
-            code: 404,
-            status: false,
-            message: "Member not found",
-        });
-    }
-
     res.status(200).json({
             code: 200,
             status: true,
             message: "Profile images fetched successfully",
-            data: getimage.image,
-            imageid: getimage.id
+            data: getimage?.image,
+            imageid: getimage?.id
     });
 
   }catch(error){
