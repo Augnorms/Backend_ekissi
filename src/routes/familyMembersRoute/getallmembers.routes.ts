@@ -21,7 +21,7 @@ route.get("/", async(req:Request, res:Response)=>{
 
     // Create a map of member IDs to their images
     const imageMap = images.reduce((acc: { [key: number]: string }, image: any) => {
-      acc[image.id] = image.image;
+      acc[image.member.id] = image.image;
       return acc;
     }, {});
 
