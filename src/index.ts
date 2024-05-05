@@ -2,8 +2,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
-export {};
-import databaseConnection from "./datasource/datasource";
+const datasource = require("./datasource/datasource");
+const databaseConnection = datasource.default;
 
 // Then continue with your other require() statements for routes...
 
