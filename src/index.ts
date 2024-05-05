@@ -53,6 +53,7 @@ databaseConnection.initialize().then(()=>{
 }).catch((err)=>{
    console.log('failed to connect to database' +err);
 });
+
   
 //accessing the routes here
 app.use("/createmember", createMember);
