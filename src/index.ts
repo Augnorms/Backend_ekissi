@@ -41,6 +41,7 @@ const femalecount = require("./routes/familySummaryRoute/femalecount.routes");
 const malecount = require("./routes/familySummaryRoute/malecount.routes");
 const allverification = require("./routes/verificationRoute/verification.routes");
 
+
 dotenv.config();
 const app = express()
 app.use(express.json());
