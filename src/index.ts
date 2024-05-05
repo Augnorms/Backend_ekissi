@@ -2,6 +2,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+export {};
 import databaseConnection from "./datasource/datasource";
 
 // Then continue with your other require() statements for routes...
