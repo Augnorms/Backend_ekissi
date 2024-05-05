@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "babel-node dist/index.js",
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc",
     "prestart": "npm run build",
@@ -35,9 +35,16 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.11.25",
     "@types/nodemailer": "^6.4.14",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "babel-node": "^14.8.0",
+    "@babel/preset-env": "^14.8.0"
   },
   "engines": {
     "node": ">=18.12.1 <20.8.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
