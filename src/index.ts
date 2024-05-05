@@ -1,8 +1,11 @@
-import "reflect-metadata";
-import * as dotenv from "dotenv";
-import express from 'express';
+// Instead of import statements
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
 import databaseConnection from "./datasource/datasource";
-import cors from "cors";
+
+// Then continue with your other require() statements for routes...
+
 
 //initialize router here
 const createMember = require("./routes/familyMembersRoute/memberInfo.routes");
@@ -51,7 +54,7 @@ const port = process.env.PORT_NUMBER
 //database connection
 databaseConnection.initialize().then(()=>{
     console.log('database connection established');
-}).catch((err)=>{
+}).catch((err: Error)=>{
    console.log('failed to connect to database ' +err);
 });
 
