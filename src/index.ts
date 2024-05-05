@@ -52,7 +52,7 @@ const port = process.env.PORT_NUMBER
 databaseConnection.initialize().then(()=>{
     console.log('database connection established');
 }).catch((err)=>{
-   console.log('failed to connect to database' +err);
+   console.log('failed to connect to database ' +err);
 });
 
   
