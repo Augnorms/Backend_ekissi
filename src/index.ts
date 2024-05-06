@@ -48,7 +48,7 @@ dotenv.config();
 const app = express()
 app.use(express.json());
 app.use(cors());//used to configure which origin needs to access a resources from this server.
-const port = process.env.PORT_NUMBER
+const port = process.env.PORT_NUMBER || 8080;
 
 //database connection
 databaseConnection.initialize().then(()=>{
