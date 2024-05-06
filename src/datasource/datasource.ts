@@ -1,12 +1,10 @@
-// import { DataSource } from "typeorm";
-const DataSource = require("typeorm").default
+import { DataSource } from "typeorm";
 const dotenv = require("dotenv");
-
- dotenv.config();
+dotenv.config();
 
 
 //database connection with typeorm
-export const databaseConnection = new DataSource({
+const databaseConnection = new DataSource({
   type: "mysql",
   host: process.env.DATABASE_HOST,
   port: Number(process.env.DATABASE_PORT),
@@ -18,3 +16,5 @@ export const databaseConnection = new DataSource({
   entities: ["src/entities/*.ts"],
   migrations: ["src/migrations/*.ts"],
 });
+
+export default databaseConnection;
