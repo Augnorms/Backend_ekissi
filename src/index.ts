@@ -53,7 +53,7 @@ const port = process.env.PORT_NUMBER || 8080;
 //database connection
 databaseConnection.initialize().then(()=>{
     console.log('database connection established');
-}).catch((err: Error)=>{
+}).catch((err:any)=>{
    console.log('failed to connect to database ' +err);
 });
 
