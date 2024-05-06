@@ -51,11 +51,11 @@ app.use(cors());//used to configure which origin needs to access a resources fro
 const port = process.env.PORT_NUMBER || 8080;
 
 //database connection
-databaseConnection.initialize().then(()=>{
-    console.log('database connection established');
-}).catch((err:Error)=>{
-   console.log('failed to connect to database ' +err);
-});
+// databaseConnection.initialize().then(()=>{
+//     console.log('database connection established');
+// }).catch((err:Error)=>{
+//    console.log('failed to connect to database ' +err);
+// });
 
   
 //accessing the routes here
