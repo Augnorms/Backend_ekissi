@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
-import * as dotenv from "dotenv";
-
+const dotenv = require("dotenv");
 dotenv.config();
+
 
 //database connection with typeorm
 const databaseConnection = new DataSource({

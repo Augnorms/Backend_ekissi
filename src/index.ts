@@ -5,8 +5,6 @@ const cors = require("cors");
 const datasource = require("./datasource/datasource");
 const databaseConnection = datasource.default;
 
-// Then continue with your other require() statements for routes...
-
 
 //initialize router here
 const createMember = require("./routes/familyMembersRoute/memberInfo.routes");
