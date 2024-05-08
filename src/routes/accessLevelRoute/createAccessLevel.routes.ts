@@ -2,9 +2,9 @@ import express from "express";
 import databaseConnection from "../../datasource/datasource";
 import { AccessLevel } from "../../entities/accesslevel";
 
-const router = express.Router();
+const route = express.Router();
 
-router.post("/", async (req, res) => {
+route.post("/", async (req, res) => {
   try {
     const {
       accesslevelname,
@@ -76,4 +76,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-module.exports=router;
+export default route;

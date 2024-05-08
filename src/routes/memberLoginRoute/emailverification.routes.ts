@@ -72,4 +72,4 @@ async function sendVerificationEmail(email: string, firstname: string, verificat
   await transporter.sendMail(mailOptions);
 }
 
-module.exports = route;
+export default route;

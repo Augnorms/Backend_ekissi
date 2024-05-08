@@ -44,4 +44,4 @@ route.post("/", async (req: Request, res: Response) => {
     }
 });
 
-module.exports = route;
+export default route;
