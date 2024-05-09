@@ -2,12 +2,12 @@
   "name": "ekissi_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "type": "commonjs",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node ./dist/index.js",
     "build": "rm -rf dist && tsc",
-    "dev": "nodemon --exec ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
