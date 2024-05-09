@@ -3,7 +3,7 @@
     /* Language and Environment */
     "target": "es2018",
     "module": "commonjs",
-    "outDir": "./dist",
+    "outDir": "./src/dist",
     "rootDir": "./src",
     "sourceMap": true,
     "declaration": true,
