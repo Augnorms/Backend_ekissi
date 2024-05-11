@@ -1,5 +1,13 @@
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
+import { About } from "../entities/about";
+import { Members } from "../entities/members";
+import { AccessLevel } from "../entities/accesslevel";
+import { Account } from "../entities/account";
+import { Gallery } from "../entities/gallery";
+import { Profileimage } from "../entities/profileimage";
+import { Relationship } from "../entities/relationship";
+import { Verification } from "../entities/verification";
 dotenv.config();
 
 
@@ -13,8 +21,8 @@ const databaseConnection = new DataSource({
   database: process.env.DATABASE_NAME,
   synchronize: true,
   logging:true,
-  entities: ["./src/entities/*.ts"],
-  migrations: ["./src/migrations/*.ts"],
+  entities: [About, AccessLevel, Account, Gallery, Members, Profileimage, Relationship, Verification],
+  migrations: [],
 });
 
 export default databaseConnection;
