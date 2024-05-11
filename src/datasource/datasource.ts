@@ -13,8 +13,8 @@ const databaseConnection = new DataSource({
   database: process.env.DATABASE_NAME,
   synchronize: true,
   logging:true,
-  entities: ["src/entities/*.ts"],
-  migrations: ["src/migrations/*.ts"],
+  entities: ["./src/entities/*.ts"],
+  migrations: ["./src/migrations/*.ts"],
 });
 
 export default databaseConnection;
