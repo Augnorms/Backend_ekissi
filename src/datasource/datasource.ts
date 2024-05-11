@@ -11,7 +11,7 @@ const databaseConnection = new DataSource({
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
-  synchronize: false,
+  synchronize: true,
   logging:true,
   entities: ["src/entities/*.ts"],
   migrations: ["src/migrations/*.ts"],
