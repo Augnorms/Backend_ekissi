@@ -26,11 +26,15 @@ route.post("/", async (req: Request, res: Response) => {
                 status: false,
                 message: "User not found",
             });
-        }
+
+        }else if(user){
+
+        let usersid = user?.id;
+        let userslabel = `${user?.firstname} ${user?.lastname}`
 
         const accessResponse = await axios.post(String(accesslevelroute), {
-            id:String(user.id),
-            label:`${user.firstname} ${user.lastname}`
+            id:usersid,
+            label:userslabel
         })
 
         const accessLevelData = accessResponse?.data?.data;
@@ -79,6 +83,7 @@ route.post("/", async (req: Request, res: Response) => {
                 });
             }
         });
+     }   
 
     } catch (error) {
         console.error("Error:", error);
