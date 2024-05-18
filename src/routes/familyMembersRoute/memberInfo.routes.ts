@@ -70,6 +70,7 @@ route.post("/", async(req:Request, res:Response)=>{
 
         let response = await membersRepo.save(createMember);
 
+        
         if(response){
             
            const mailtemplate = path.join(__dirname, "../../emailNotification.html");
