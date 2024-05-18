@@ -25,8 +25,8 @@ const extractAccessLevelData = (level: AccessLevel) => ({
 });
 
 // Function to check if a user has a specific access level
-const hasAccessLevel = (level: AccessLevel, id: number, label: string) => {
-    return level.users.some(user => user.id === id && user.name === label.trim());
+const hasAccessLevel = (level: AccessLevel, id: string, label: string) => {
+    return level.users.some(user => String(user.id) === id && user.label === label.trim());
 };
 
 route.post("/", async (req: Request, res: Response) => {

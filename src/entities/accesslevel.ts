@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, JoinTable, ManyToMany } from "t
 
 interface UserData {
     id: number;
-    name: string;
+    label: string;
 }
 
 @Entity({ name: 'accesslevel' })
