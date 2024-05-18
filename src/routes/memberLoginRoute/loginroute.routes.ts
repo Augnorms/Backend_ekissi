@@ -61,7 +61,7 @@ route.post("/", async (req: Request, res: Response) => {
                         dateofbirth: user.dateofbirth,
                         gender: user.gender,
                         nationality: user.nationality,
-                        // accesslevel: accessLevelData ? {accessLevelData} : {},
+                        accesslevel: accessLevelData ? {accessLevelData} : {},
                         image: profileImageRes?.data?.data ? profileImageRes?.data?.data : ""
                     },
                     "validate12345",
