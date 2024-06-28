@@ -20,6 +20,8 @@ COPY package*.json ./
 RUN npm install --production
 # Copy compiled JavaScript files from the build stage
 COPY --from=build /usr/src/app/dist ./dist
+# Copy email template file to the working directory
+COPY emailNotification.html ./dist/emailNotification.html
 # Expose the port the app runs on
 EXPOSE 3000
 # Command to run the application
