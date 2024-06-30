@@ -22,6 +22,9 @@ RUN npm install --production
 COPY --from=build /usr/src/app/dist ./dist
 # Copy email template file to the working directory
 COPY ./src/emailNotification.html ./dist/emailNotification.html
+
+COPY ./src/emailTemplate.html ./dist/emailTemplate.html
+
 # Expose the port the app runs on
 EXPOSE 3000
 # Command to run the application
